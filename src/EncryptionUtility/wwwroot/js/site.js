@@ -3,8 +3,8 @@
 
 // Write your JavaScript code.
 $('#demo').FancyFileUpload({
+    url: '/home/upload',
     params : {
-        action : 'fileuploader'
     },
     maxfilesize : 1000000
 });

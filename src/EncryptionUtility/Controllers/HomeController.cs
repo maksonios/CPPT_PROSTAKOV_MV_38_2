@@ -17,17 +17,16 @@ public class HomeController : Controller
     {
         return View();
     }
-
-
-
+    
     public IActionResult Privacy()
     {
         return View();
     }
-
-    public void Upload(IFormFile file)
+    
+    [HttpPost]
+    public void Upload([FromForm] IFormFile[] files)
     {
-        Console.WriteLine(file);
+        Console.WriteLine(files.Length);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
