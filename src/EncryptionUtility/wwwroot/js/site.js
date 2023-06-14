@@ -2,3 +2,9 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+$('#demo').FancyFileUpload({
+    params : {
+        action : 'fileuploader'
+    },
+    maxfilesize : 1000000
+});
