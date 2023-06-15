@@ -2,9 +2,13 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+var currentUrl = window.location.pathname;
+var segments = currentUrl.split('/');
+var controllerName = segments[1];
 $('#demo').FancyFileUpload({
-    url: '/home/upload',
+    url: '/' + controllerName + '/upload',
     params : {
     },
+    retries: 0,
     maxfilesize : 1000000
 });
