@@ -6,7 +6,7 @@
     <title>@ViewData["Title"] - EncryptionUtility</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
-    <link rel="stylesheet" href="~/css/fancy_fileupload.css">
+    <link href="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <header>
@@ -61,10 +61,7 @@
 </footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/jquery.ui.widget.js"></script>
-<script src="~/js/jquery.fileupload.js"></script>
-<script src="~/js/jquery.iframe-transport.js"></script>
-<script src="~/js/jquery.fancy-fileupload.js"></script>
+<script src="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone-min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
 @await RenderSectionAsync("Scripts", required: false)
 </body>

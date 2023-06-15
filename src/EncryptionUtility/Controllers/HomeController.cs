@@ -24,9 +24,9 @@ public class HomeController : Controller
     }
     
     [HttpPost]
-    public void Upload([FromForm] IFormFile[] files)
+    public void Upload([FromForm] IFormFile file)
     {
-        Console.WriteLine(files.Length);
+        Console.WriteLine(file.Length);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

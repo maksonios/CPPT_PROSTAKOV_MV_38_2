@@ -4,15 +4,14 @@ namespace EncryptionUtility.Controllers;
 
 public class AESEncryptController : Controller
 {
-    // GET
     public IActionResult Index()
     {
         return View();
     }
     
     [HttpPost]
-    public void Upload([FromForm] IFormFile[] files)
+    public void Upload([FromForm] IFormFile file)
     {
-        Console.WriteLine(files.Length);
+        Console.WriteLine(file.Length);
     }
 }
