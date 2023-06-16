@@ -7,9 +7,9 @@ public class HashsumCalcController : Controller
 {
     private readonly HashsumCalculationService _service;
 
-    public HashsumCalcController()
+    public HashsumCalcController(HashsumCalculationService service)
     {
-        _service = new HashsumCalculationService();
+        _service = service;
     }
 
     public IActionResult Index()

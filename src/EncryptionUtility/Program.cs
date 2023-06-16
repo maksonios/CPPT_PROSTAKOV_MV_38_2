@@ -1,7 +1,10 @@
+using EncryptionUtility.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<HashsumCalculationService>();
 
 var app = builder.Build();
 
