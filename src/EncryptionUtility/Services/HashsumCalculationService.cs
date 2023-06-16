@@ -14,33 +14,22 @@ public class HashsumCalculationService
 {
     public string CalculateHash(Stream stream, Algorithm algorithm)
     {
+        if (algorithm == Algorithm.None)
+            return "Please, select one of algorithms to proceed";
+
+        using var hashAlgorithm = GetHashAlgorithm(algorithm);
+        var hashBytes = hashAlgorithm.ComputeHash(stream);
+        return BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
+    }
+
+    private static HashAlgorithm GetHashAlgorithm(Algorithm algorithm)
+    {
         return algorithm switch
         {
-            Algorithm.MD5 => CalculateMD5(stream),
-            Algorithm.SHA1 => CalculateSHA1(stream),
-            Algorithm.SHA256 => CalculateSHA256(stream),
-            _ => "Please, select one of algorithms to proceed"
+            Algorithm.MD5 => MD5.Create(),
+            Algorithm.SHA1 => SHA1.Create(),
+            Algorithm.SHA256 => SHA256.Create(),
+            _ => throw new ArgumentOutOfRangeException(nameof(algorithm), algorithm, null)
         };
-    }
-    
-    private static string CalculateMD5(Stream stream)
-    {
-        using var md5 = MD5.Create();
-        var hashBytes = md5.ComputeHash(stream);
-        return BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
-    }
-    
-    private static string CalculateSHA1(Stream stream)
-    {
-        using var sha1 = SHA1.Create();
-        var hashBytes = sha1.ComputeHash(stream);
-        return BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
-    }
-    
-    private static string CalculateSHA256(Stream stream)
-    {
-        using var sha256 = SHA256.Create();
-        var hashBytes = sha256.ComputeHash(stream);
-        return BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
     }
 }
