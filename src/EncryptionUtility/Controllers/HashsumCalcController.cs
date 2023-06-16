@@ -1,3 +1,4 @@
+using EncryptionUtility.Extensions;
 using EncryptionUtility.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,10 +21,7 @@ public class HashsumCalcController : Controller
     [HttpPost]
     public async Task<string> Upload([FromForm] IFormFile file, [FromForm] Algorithm algorithm)
     {
-        using var stream = new MemoryStream();
-        await file.CopyToAsync(stream);
-        stream.Position = 0;
-
+        await using var stream = await file.GetMemoryStream();
         return _service.CalculateHash(stream, algorithm);
     }
 }
