@@ -2,8 +2,18 @@
     ViewData["Title"] = "Hashsum Calculator Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+    <h1 class="mt-5 mb-2">Hashsum Calculation Page</h1>
+    <div class="d-flex justify-content-start p-3">
+        <label for="algorithm" class="col-3">Select an algorithm:</label>
+        <select id="algorithm" class="col-9">
+            <option value="None">None</option>
+            <option value="MD5">MD5</option>
+            <option value="SHA1">SHA1</option>
+            <option value="SHA256">SHA256</option>
+        </select>
+    </div>
     <div id="my-dropzone" class="dropzone"></div>
+    <button id="submit" type="button" class="btn btn-primary my-3">Submit</button>
+    <textarea id="result" rows="10" class="form-control mt-4" readonly></textarea>
 </div>

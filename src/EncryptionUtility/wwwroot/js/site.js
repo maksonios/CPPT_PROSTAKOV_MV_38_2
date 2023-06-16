@@ -1,78 +1,21 @@
 ﻿var currentUrl = window.location.pathname;
 var segments = currentUrl.split('/');
 var controllerName = segments[1];
-Dropzone = new Dropzone("#my-dropzone", { url: '/' + controllerName + '/upload'});
-// myDropzone.on('success', function(response) {
-//     console.log(response);
-// });
+var dropzone = new Dropzone("#my-dropzone", { 
+    url: '/' + controllerName + '/upload',
+    maxFiles: 1,
+    params: {
+        kurwa: "asd"
+    }
+});
 
-// let myDropzone = new Dropzone("#my-dropzone", 
-//     { 
-//         url: "/home/upload",
-//         autoProcessQueue: false,
-//         uploadMultiple: true,
-//         parallelUploads: 100,
-//         maxFiles: 100,
-//     });
-//
-// var dropzone = new Dropzone('#my-dropzone', {
-//     url: '/' + controllerName + '/upload',
-//     autoProcessQueue: true,
-//     thumbnailHeight: 120,
-//     thumbnailWidth: 120,
-//     maxFilesize: 3,
-//     filesizeBase: 1000,
-//     thumbnail: function(file, dataUrl) {
-//         if (file.previewElement) {
-//             file.previewElement.classList.remove("dz-file-preview");
-//             var images = file.previewElement.querySelectorAll("[data-dz-thumbnail]");
-//             for (var i = 0; i < images.length; i++) {
-//                 var thumbnailElement = images[i];
-//                 thumbnailElement.alt = file.name;
-//                 thumbnailElement.src = dataUrl;
-//             }
-//             setTimeout(function() { file.previewElement.classList.add("dz-image-preview"); }, 1);
-//         }
-//     }
-// });
+dropzone.on('success', function (response) {
+    var result = response.xhr.response.substring(1, response.xhr.response.length-1);
+    $("#result").val(result);
+});
 
+dropzone.on("sending", function(file, xhr, formData) {
+    $("#algorithm").val();
+    formData.append("algorithm", $("#algorithm").val());
+});
 
-// Now fake the file upload, since GitHub does not handle file uploads
-// and returns a 404
-//
-// var minSteps = 6,
-//     maxSteps = 60,
-//     timeBetweenSteps = 100,
-//     bytesPerStep = 100000;
-//
-// dropzone.uploadFiles = function(files) {
-//     var self = this;
-//
-//     for (var i = 0; i < files.length; i++) {
-//
-//         var file = files[i];
-//         totalSteps = Math.round(Math.min(maxSteps, Math.max(minSteps, file.size / bytesPerStep)));
-//
-//         for (var step = 0; step < totalSteps; step++) {
-//             var duration = timeBetweenSteps * (step + 1);
-//             setTimeout(function(file, totalSteps, step) {
-//                 return function() {
-//                     file.upload = {
-//                         progress: 100 * (step + 1) / totalSteps,
-//                         total: file.size,
-//                         bytesSent: (step + 1) * file.size / totalSteps
-//                     };
-//
-//                     self.emit('uploadprogress', file, file.upload.progress, file.upload.bytesSent);
-//                     if (file.upload.progress == 100) {
-//                         file.status = Dropzone.SUCCESS;
-//                         self.emit("success", file, 'success', null);
-//                         self.emit("complete", file);
-//                         self.processQueue();
-//                         //document.getElementsByClassName("dz-success-mark").style.opacity = "1";
-//                     }
-//                 };
-//             }(file, totalSteps, step), duration);
-//         }
-//     }
-// }
