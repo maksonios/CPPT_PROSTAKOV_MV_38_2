@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<HashsumCalculationService>();
+builder.Services.AddTransient<RSAKeyGenerationService>();
 
 var app = builder.Build();
 
