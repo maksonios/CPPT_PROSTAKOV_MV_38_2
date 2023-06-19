@@ -7,7 +7,7 @@ $('#home-generate').click(function() {
 
 $('#profile-generate').click(function() {
     $.post('/RSAKeygen/GeneratePublicRsaKey', {privateKey: $('#profile-private').val()}, function(data) {
-        $('#profile-public').val(data.publicKey);
+        $('#profile-public').val(data);
     });
 });
 
