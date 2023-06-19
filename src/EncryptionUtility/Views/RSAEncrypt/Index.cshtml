@@ -1,9 +1,45 @@
 @{
-    ViewData["Title"] = "RSA Encrypt Page";
+    ViewData["Title"] = "RSA Key Generation Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <div id="my-dropzone" class="dropzone"></div>
-</div>
+    <h1 class="text-center mt-5 mb-2">RSA File Encryption/Decryption Page</h1>
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Encrypt file with public key</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Decrypt file with private key</button>
+      </li>
+    </ul>
+    
+    <div class="tab-content">
+        <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="row">
+                <div class="col-6">
+                    <textarea id="home-public" rows="28" cols="30" class="form-control mt-4" placeholder="Paste your public key here."></textarea>
+                </div>
+                <div class="col-6">
+                    <div id="home-dropzone" class="dropzone" style="margin-top: 25px; height: 96.3%"></div>
+                </div>
+            </div>
+            <button id="home-encrypt" type="button" class="btn btn-primary btn-lg mx-auto d-block my-3">Encrypt</button>
+        </div>
+        <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="row">
+                <div class="col-6">
+                    <textarea id="profile-private" rows="28" cols="30" class="form-control mt-4" placeholder="Paste your private key here."></textarea>
+                </div>
+                <div class="col-6">
+                    <div id="profile-dropzone" class="dropzone" style="margin-top: 25px; height: 96.3%"></div>
+                </div>
+            </div>
+            <button id="profile-decrypt" type="button" class="btn btn-primary btn-lg mx-auto d-block my-3">Decrypt</button>
+        </div>
+    </div>
+
+
+@section Scripts
+{
+    <script src="~/js/rsaencrypt.js" asp-append-version="true"></script>
+}

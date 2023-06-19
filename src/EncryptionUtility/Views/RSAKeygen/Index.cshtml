@@ -2,7 +2,7 @@
     ViewData["Title"] = "RSA Key Generation Page";
 }
 
-    <h1 class="text-center mt-5 mb-2">RSA Keygen</h1>
+    <h1 class="text-center mt-5 mb-2">RSA Key Generation Page</h1>
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
@@ -15,7 +15,6 @@
     
     <div class="tab-content">
         <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <h3 class="text-center mt-5 mb-2">RSA Key Generation Page</h3>
             <div class="form-group">
                 <label for="key_size" class="col-3">Choose key length:</label>
                 <select id="key_size" class="col-9">
@@ -25,7 +24,6 @@
                     <option value="4096">4096</option>
                 </select>
             </div>
-            <button id="home-generate" type="button" class="btn btn-primary btn-lg mx-auto d-block my-3">Generate</button>
             <div class="row">
                 <div class="col-6">
                     <textarea id="home-private" rows="28" cols="30" class="form-control mt-4" readonly></textarea>
@@ -34,10 +32,9 @@
                     <textarea id="home-public" rows="28" cols="30" class="form-control mt-4" readonly></textarea>
                 </div>
             </div>
+            <button id="home-generate" type="button" class="btn btn-primary btn-lg mx-auto d-block my-3">Generate</button>
         </div>
         <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <h3 class="text-center mt-5 mb-2">RSA Public from Private Key Generation Page</h3>
-            <button id="profile-generate" type="button" class="btn btn-primary btn-lg mx-auto d-block my-3">Generate</button>
             <div class="row">
                 <div class="col-6">
                     <textarea id="profile-private" rows="28" cols="30" class="form-control mt-4" placeholder="Paste your private key here."></textarea>
@@ -46,7 +43,7 @@
                     <textarea id="profile-public" rows="28" cols="30" class="form-control mt-4" readonly></textarea>
                 </div>
             </div> 
-            
+            <button id="profile-generate" type="button" class="btn btn-primary btn-lg mx-auto d-block my-3">Generate</button>
         </div>
     </div>
 
