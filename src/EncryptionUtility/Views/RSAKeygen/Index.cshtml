@@ -25,17 +25,29 @@
                     <option value="4096">4096</option>
                 </select>
             </div>
-            <button id="generate" type="button" class="btn btn-primary btn-lg mx-auto d-block my-3">Generate</button>
+            <button id="home-generate" type="button" class="btn btn-primary btn-lg mx-auto d-block my-3">Generate</button>
             <div class="row">
                 <div class="col-6">
-                    <textarea id="private" rows="28" cols="30" class="form-control mt-4" readonly></textarea>
+                    <textarea id="home-private" rows="28" cols="30" class="form-control mt-4" readonly></textarea>
                 </div>
                 <div class="col-6">
-                    <textarea id="public" rows="28" cols="30" class="form-control mt-4" readonly></textarea>
+                    <textarea id="home-public" rows="28" cols="30" class="form-control mt-4" readonly></textarea>
                 </div>
             </div>
         </div>
-        <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">Kurwa 2</div>
+        <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <h3 class="text-center mt-5 mb-2">RSA Public from Private Key Generation Page</h3>
+            <button id="profile-generate" type="button" class="btn btn-primary btn-lg mx-auto d-block my-3">Generate</button>
+            <div class="row">
+                <div class="col-6">
+                    <textarea id="profile-private" rows="28" cols="30" class="form-control mt-4" placeholder="Paste your private key here."></textarea>
+                </div>
+                <div class="col-6">
+                    <textarea id="profile-public" rows="28" cols="30" class="form-control mt-4" readonly></textarea>
+                </div>
+            </div> 
+            
+        </div>
     </div>
 
 

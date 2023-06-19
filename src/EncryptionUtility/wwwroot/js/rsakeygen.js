@@ -1,7 +1,14 @@
-$('#generate').click(function() {
+$('#home-generate').click(function() {
     $.post('/RSAKeygen/GenerateRsaKey', {keySize: $('#key_size').val()}, function(data) {
-        $('#private').val(data.privateKey);
-        $('#public').val(data.publicKey);
+        $('#home-private').val(data.privateKey);
+        $('#home-public').val(data.publicKey);
+    });
+});
+
+$('#profile-generate').click(function() {
+    $.post('/RSAKeygen/GeneratePublicRsaKey', {privateKey: $('#profile-private').val()}, function(data) {
+        $('#profile-private').val(data.privateKey);
+        $('#profile-public').val(data.publicKey);
     });
 });
 
