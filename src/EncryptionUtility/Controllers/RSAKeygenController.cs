@@ -21,7 +21,7 @@ public class RSAKeygenController : Controller
     [HttpPost]
     public RsaKey GenerateRsaKey([FromForm] string keySize)
     {
-        var privateKey = _service.GeneratePrivateKey();
+        var privateKey = _service.GeneratePrivateKey(keySize);
         var publicKey = _service.GeneratePublicKey(privateKey);
         return new RsaKey(privateKey, publicKey);
     }

@@ -15,8 +15,8 @@
     
     <div class="tab-content">
         <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <h1 class="text-center mt-5 mb-2">RSA Key Generation Page</h1>
-            <div class="d-flex justify-content-start p-3">
+            <h3 class="text-center mt-5 mb-2">RSA Key Generation Page</h3>
+            <div class="form-group">
                 <label for="key_size" class="col-3">Choose key length:</label>
                 <select id="key_size" class="col-9">
                     <option value="None">None</option>
@@ -25,7 +25,7 @@
                     <option value="4096">4096</option>
                 </select>
             </div>
-            <button id="generate" type="button" class="btn btn-primary my-3">Generate</button>
+            <button id="generate" type="button" class="btn btn-primary btn-lg mx-auto d-block my-3">Generate</button>
             <div class="row">
                 <div class="col-6">
                     <textarea id="private" rows="28" cols="30" class="form-control mt-4" readonly></textarea>
