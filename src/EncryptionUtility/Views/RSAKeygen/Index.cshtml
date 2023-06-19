@@ -2,29 +2,42 @@
     ViewData["Title"] = "RSA Key Generation Page";
 }
 
-<link rel="stylesheet" href="~/css/rsakeygen.css" asp-append-version="true"/>
+    <h1 class="text-center mt-5 mb-2">RSA Keygen</h1>
 
-<div class="text-center">
-    <h1 class="mt-5 mb-2">RSA Key Generation Page</h1>
-    <div class="d-flex justify-content-start p-3">
-        <label for="length" class="col-3">Choose key length:</label>
-        <select id="length" class="col-9">
-            <option value="None">None</option>
-            <option value="1024">1024</option>
-            <option value="2048">2048</option>
-            <option value="4096">4096</option>
-        </select>
-    </div>
-    <button id="generate" type="button" class="btn btn-primary my-3">Generate</button>
-    <div class="row">
-        <div class="col-6">
-            <textarea id="private" rows="10" cols="30" class="form-control mt-4" readonly></textarea>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Generate private-public keys</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Generate public key from private key</button>
+      </li>
+    </ul>
+    
+    <div class="tab-content">
+        <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <h1 class="text-center mt-5 mb-2">RSA Key Generation Page</h1>
+            <div class="d-flex justify-content-start p-3">
+                <label for="key_size" class="col-3">Choose key length:</label>
+                <select id="key_size" class="col-9">
+                    <option value="None">None</option>
+                    <option value="1024">1024</option>
+                    <option value="2048">2048</option>
+                    <option value="4096">4096</option>
+                </select>
+            </div>
+            <button id="generate" type="button" class="btn btn-primary my-3">Generate</button>
+            <div class="row">
+                <div class="col-6">
+                    <textarea id="private" rows="28" cols="30" class="form-control mt-4" readonly></textarea>
+                </div>
+                <div class="col-6">
+                    <textarea id="public" rows="28" cols="30" class="form-control mt-4" readonly></textarea>
+                </div>
+            </div>
         </div>
-        <div class="col-6">
-            <textarea id="public" rows="10" cols="30" class="form-control mt-4" readonly></textarea>
-        </div>
+        <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">Kurwa 2</div>
     </div>
-</div>
+
 
 @section Scripts
 {

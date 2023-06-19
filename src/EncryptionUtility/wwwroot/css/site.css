@@ -20,3 +20,8 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+textarea {
+  font-family: monospace;
+  font-size: 14px !important;
+}

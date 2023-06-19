@@ -1,12 +1,9 @@
-using System.Security.Cryptography;
 using EncryptionUtility.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EncryptionUtility.Controllers;
 
 public record RsaKey(string PrivateKey, string PublicKey);
-
-// public record GenerateRsaKeyRequest(string Type);
 
 public class RSAKeygenController : Controller
 {
@@ -20,11 +17,9 @@ public class RSAKeygenController : Controller
     {
         return View();
     }
-    
-//    public RsaKey GenerateRsaKey([FromBody] GenerateRsaKeyRequest request)
 
     [HttpPost]
-    public RsaKey GenerateRsaKey()
+    public RsaKey GenerateRsaKey([FromForm] string keySize)
     {
         var privateKey = _service.GeneratePrivateKey();
         var publicKey = _service.GeneratePublicKey(privateKey);
