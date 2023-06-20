@@ -5,28 +5,35 @@ namespace EncryptionUtility.Controllers;
 
 public record RsaKey(string PrivateKey, string PublicKey);
 
+[Route("rsa-key")]
 public class RSAKeygenController : Controller
 {
     private readonly RSAKeyGenerationService _service;
+    
+    private static readonly string[] ValidKeySizes = { "1024", "2048", "4096" };
 
     public RSAKeygenController(RSAKeyGenerationService service)
     {
         _service = service;
     }
+    
     public IActionResult Index()
     {
         return View();
     }
 
-    [HttpPost]
-    public RsaKey GenerateRsaKey([FromForm] string keySize)
+    [HttpPost("generate-pair")]
+    public IActionResult GenerateRsaKey([FromForm] string keySize)
     {
+        if (!ValidKeySizes.Contains(keySize))
+            return Problem("Key size is not valid", statusCode: 400);
+        
         var privateKey = _service.GeneratePrivateKey(keySize);
         var publicKey = _service.GeneratePublicKey(privateKey);
-        return new RsaKey(privateKey, publicKey);
+        return new ObjectResult(new RsaKey(privateKey, publicKey));
     }
 
-    [HttpPost]
+    [HttpPost("generate-public")]
     public string GeneratePublicRsaKey([FromForm] string privateKey)
     {
         var publicKey = _service.GeneratePublicKey(privateKey);

@@ -7,33 +7,26 @@ public class RSAKeyGenerationService
     public string GeneratePrivateKey(string keySize)
     {
         using var rsa = RSA.Create();
-        switch (keySize)
-        {
-            case "1024":
-                rsa.KeySize = 1024;
-                break;
-            case "2048":
-                rsa.KeySize = 2048;
-                break;
-            case "4096":
-                rsa.KeySize = 4096;
-                break;
-            case "None":
-                return "Choose the key size first.";
-        }
+        rsa.KeySize = ParseKeySize(keySize);
         return rsa.ExportPkcs8PrivateKeyPem();
     }
 
     public string GeneratePublicKey(string privateKey)
     {
-        if (privateKey == "Choose the key size first.")
-        {
-            return "Choose the key size first.";
-        }
-        
         using var rsa = RSA.Create();
         rsa.ImportFromPem(privateKey.AsSpan());
         return rsa.ExportSubjectPublicKeyInfoPem();
+    }
+
+    private int ParseKeySize(string keySize)
+    {
+        return keySize switch
+        {
+            "1024" => 1024,
+            "2048" => 2048,
+            "4096" => 4096,
+            _ => throw new ArgumentOutOfRangeException(nameof(keySize), keySize, null)
+        };
     }
 }
 

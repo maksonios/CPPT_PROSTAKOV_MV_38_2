@@ -1,5 +1,5 @@
 var dropzone = new Dropzone("#my-dropzone", {
-    url: '/HashsumCalc/Upload',
+    url: '/hash-sum/upload',
     maxFiles: 1,
     maxFilesize: 3,
     autoProcessQueue: false,

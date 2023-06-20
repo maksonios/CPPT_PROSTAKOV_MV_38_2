@@ -6,38 +6,38 @@
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Encrypt file with public key</button>
+        <button class="nav-link active" id="encrypt-tab" data-bs-toggle="tab" data-bs-target="#encrypt" type="button" role="tab" aria-controls="encrypt" aria-selected="true">Encrypt file with public key</button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Decrypt file with private key</button>
+        <button class="nav-link" id="decrypt-tab" data-bs-toggle="tab" data-bs-target="#decrypt" type="button" role="tab" aria-controls="decrypt" aria-selected="false">Decrypt file with private key</button>
       </li>
     </ul>
     
     <div class="tab-content">
-        <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="tab-pane active" id="encrypt" role="tabpanel" aria-labelledby="encrypt-tab">
             <div class="row">
                 <div class="col-6">
-                    <textarea id="home-public" rows="28" cols="30" class="form-control mt-4" placeholder="Paste your public key here."></textarea>
+                    <textarea id="encrypt-public" rows="28" cols="30" class="form-control mt-4" placeholder="Paste your public key here."></textarea>
                 </div>
                 <div class="col-6">
-                    <div id="home-dropzone" class="dropzone" style="margin-top: 25px; height: 96.3%"></div>
+                    <div id="encrypt-dropzone" class="dropzone" style="margin-top: 25px; height: 100%"></div>
                 </div>
             </div>
-            <button id="home-encrypt" type="button" class="btn btn-primary btn-lg mx-auto d-block my-3">Encrypt</button>
+            <button id="encrypt-encrypt" type="button" class="btn btn-primary btn-lg mx-auto d-block my-5">Encrypt</button>
         </div>
-        <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="tab-pane" id="decrypt" role="tabpanel" aria-labelledby="decrypt-tab">
             <div class="row">
                 <div class="col-6">
-                    <textarea id="profile-private" rows="28" cols="30" class="form-control mt-4" placeholder="Paste your private key here."></textarea>
+                    <textarea id="decrypt-private" rows="28" cols="30" class="form-control mt-4" placeholder="Paste your private key here."></textarea>
                 </div>
                 <div class="col-6">
-                    <div id="profile-dropzone" class="dropzone" style="margin-top: 25px; height: 96.3%"></div>
+                    <div id="decrypt-dropzone" class="dropzone" style="margin-top: 25px; height: 100%"></div>
                 </div>
             </div>
-            <button id="profile-decrypt" type="button" class="btn btn-primary btn-lg mx-auto d-block my-3">Decrypt</button>
+            <button id="decrypt-decrypt" type="button" class="btn btn-primary btn-lg mx-auto d-block my-5">Decrypt</button>
         </div>
     </div>
-
+    
 
 @section Scripts
 {
