@@ -1,8 +1,10 @@
 using System.Security.Cryptography;
-using System.Text;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace EncryptionUtility.Services;
+
+public record FileNameInfo(string Id, string Name);
+public record FileInfo(string Name, byte[] File);
 
 public class RSAEncryptService
 {
@@ -13,36 +15,22 @@ public class RSAEncryptService
         _memoryCache = memoryCache;
     }
     
-    public MemoryStream CreateEncryptedFile(IFormFile file, string publicKey)
+    public FileNameInfo CreateEncryptedFile(string fileId, string fileName, MemoryStream fileStream, string publicKey)
     {
-        byte[] fileBytes;
-        using (var memoryStream = new MemoryStream())
-        {
-            file.CopyTo(memoryStream);
-            fileBytes = memoryStream.ToArray();
-        }
-        
-        byte[] publicKeyBytes = Encoding.UTF8.GetBytes(publicKey);
-        using (var rsa = RSA.Create())
-        {
-            rsa.ImportFromPem(publicKey);
-            byte[] encryptedBytes = rsa.Encrypt(fileBytes, RSAEncryptionPadding.Pkcs1);
-            var encryptedStream = new MemoryStream(encryptedBytes);
-            return encryptedStream;
-        }
+        var fileInfo = new FileInfo(fileName, CreateEncryptedMemoryStream(fileStream, publicKey)); 
+        _memoryCache.Set(fileId, fileInfo, TimeSpan.FromMinutes(5));
+        return new FileNameInfo(fileId, fileName);
     }
-    
-    // public Dictionary<string, byte[]> encryptedFiles = new Dictionary<string, byte[]>();
-    //
-    // public byte[] RetrieveEncryptedFile(string fileId)
-    // {
-    //     if (encryptedFiles.TryGetValue(fileId, out var encryptedFile))
-    //     {
-    //         // File found, return the encrypted content
-    //         return encryptedFile;
-    //     }
-    //
-    //     return null; // File not found
-    // }
 
+    public FileInfo? TryGetEncryptedFile(string fileId)
+    {
+        return _memoryCache.TryGetValue(fileId, out FileInfo? file) ? file : null;
+    }
+
+    private byte[] CreateEncryptedMemoryStream(MemoryStream fileStream, string publicKey)
+    {
+        using var rsa = RSA.Create();
+        rsa.ImportFromPem(publicKey);
+        return rsa.Encrypt(fileStream.ToArray(), RSAEncryptionPadding.Pkcs1);
+    }
 }

@@ -20,7 +20,7 @@ $("#encrypt-encrypt").click(function (e) {
 
     encryptDropzone.on("complete", function (response) {
         if (response.xhr.status === 200) {
-            console.log(response);
+                console.log(response);
             var downloadLink = document.createElement("a");
             var fileNameInfo = JSON.parse(response.xhr.response);
             var fileId = fileNameInfo.id;
