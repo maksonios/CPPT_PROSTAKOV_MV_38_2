@@ -21,8 +21,15 @@ public class RSAEncryptService
         _memoryCache.Set(fileId, fileInfo, TimeSpan.FromMinutes(5));
         return new FileNameInfo(fileId, fileName);
     }
+    
+    public FileNameInfo CreateDecryptedFile(string fileId, string fileName, MemoryStream fileStream, string privateKey)
+    {
+        var fileInfo = new FileInfo(fileName, CreateDecryptedMemoryStream(fileStream, privateKey));
+        _memoryCache.Set(fileId, fileInfo, TimeSpan.FromMinutes(5));
+        return new FileNameInfo(fileId, fileName);
+    }
 
-    public FileInfo? TryGetEncryptedFile(string fileId)
+    public FileInfo? TryGetFile(string fileId)
     {
         return _memoryCache.TryGetValue(fileId, out FileInfo? file) ? file : null;
     }
@@ -33,4 +40,12 @@ public class RSAEncryptService
         rsa.ImportFromPem(publicKey);
         return rsa.Encrypt(fileStream.ToArray(), RSAEncryptionPadding.Pkcs1);
     }
+    
+    private byte[] CreateDecryptedMemoryStream(MemoryStream fileStream, string privateKey)
+    {
+        using var rsa = RSA.Create();
+        rsa.ImportFromPem(privateKey);
+        return rsa.Decrypt(fileStream.ToArray(), RSAEncryptionPadding.Pkcs1);
+    }
+
 }
