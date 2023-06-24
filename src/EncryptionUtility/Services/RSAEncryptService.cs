@@ -47,5 +47,4 @@ public class RSAEncryptService
         rsa.ImportFromPem(privateKey);
         return rsa.Decrypt(fileStream.ToArray(), RSAEncryptionPadding.Pkcs1);
     }
-
 }

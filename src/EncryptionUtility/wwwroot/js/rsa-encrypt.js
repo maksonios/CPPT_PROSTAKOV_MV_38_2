@@ -34,6 +34,7 @@ $("#encrypt-encrypt").click(function (e) {
     });
 });
 
+
 var decryptDropzone = new Dropzone("#decrypt-dropzone", {
     url: '/rsa-encrypt/upload-decrypt',
     maxFiles: 1,

@@ -11,15 +11,14 @@ var encryptAES = new Dropzone("#encrypt-aes", {
     sending: (file, xhr, formData) => {
         formData.append("key", $("#aes-encrypt-key").val());
     },
-
 });
 
 $("#encrypt-encrypt").click(function (e) {
     e.preventDefault();
 
-    decryptDropzone.processQueue();
+    encryptAES.processQueue();
 
-    decryptDropzone.on("complete", function (response) {
+    encryptAES.on("complete", function (response) {
         if (response.xhr.status === 200) {
             console.log(response);
             var downloadLink = document.createElement("a");
@@ -49,15 +48,14 @@ var decryptAES = new Dropzone("#decrypt-aes", {
     sending: (file, xhr, formData) => {
         formData.append("key", $("#aes-decrypt-key").val());
     },
-
 });
 
 $("#decrypt-decrypt").click(function (e) {
     e.preventDefault();
 
-    decryptDropzone.processQueue();
+    decryptAES.processQueue();
 
-    decryptDropzone.on("complete", function (response) {
+    decryptAES.on("complete", function (response) {
         if (response.xhr.status === 200) {
             console.log(response);
             var downloadLink = document.createElement("a");

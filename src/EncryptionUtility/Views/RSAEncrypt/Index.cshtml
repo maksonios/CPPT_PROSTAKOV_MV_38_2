@@ -2,42 +2,47 @@
     ViewData["Title"] = "RSA Key Generation Page";
 }
 
-    <h1 class="text-center mt-5 mb-2">RSA File Encryption/Decryption Page</h1>
+<h1 class="text-center mt-5 mb-2">RSA File Encryption/Decryption Page</h1>
 
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-      <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="encrypt-tab" data-bs-toggle="tab" data-bs-target="#encrypt" type="button" role="tab" aria-controls="encrypt" aria-selected="true">Encrypt file with public key</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="decrypt-tab" data-bs-toggle="tab" data-bs-target="#decrypt" type="button" role="tab" aria-controls="decrypt" aria-selected="false">Decrypt file with private key</button>
-      </li>
-    </ul>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
     
-    <div class="tab-content">
-        <div class="tab-pane active" id="encrypt" role="tabpanel" aria-labelledby="encrypt-tab">
-            <div class="row">
-                <div class="col-6">
-                    <textarea id="encrypt-public" rows="25" cols="30" class="form-control mt-4" placeholder="Paste your public key here."></textarea>
-                </div>
-                <div class="col-6">
-                    <div id="encrypt-dropzone" class="dropzone" style="margin-top: 25px; height: 100%"></div>
-                </div>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="encrypt-tab" data-bs-toggle="tab" data-bs-target="#encrypt" type="button" role="tab" aria-controls="encrypt" aria-selected="true">Encrypt file with public key</button>
+    </li>
+    
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="decrypt-tab" data-bs-toggle="tab" data-bs-target="#decrypt" type="button" role="tab" aria-controls="decrypt" aria-selected="false">Decrypt file with private key</button>
+    </li>
+    
+</ul>
+
+<div class="tab-content">
+    
+    <div class="tab-pane active" id="encrypt" role="tabpanel" aria-labelledby="encrypt-tab">
+        <div class="row">
+            <div class="col-6">
+                <textarea id="encrypt-public" rows="25" cols="30" class="form-control mt-4" placeholder="Paste your public key here."></textarea>
             </div>
-            <button id="encrypt-encrypt" type="button" class="btn btn-primary btn-lg mx-auto d-block my-5">Encrypt</button>
-        </div>
-        <div class="tab-pane" id="decrypt" role="tabpanel" aria-labelledby="decrypt-tab">
-            <div class="row">
-                <div class="col-6">
-                    <textarea id="decrypt-private" rows="25" cols="30" class="form-control mt-4" placeholder="Paste your private key here."></textarea>
-                </div>
-                <div class="col-6">
-                    <div id="decrypt-dropzone" class="dropzone" style="margin-top: 25px; height: 100%"></div>
-                </div>
+            <div class="col-6">
+                <div id="encrypt-dropzone" class="dropzone" style="margin-top: 25px; height: 100%"></div>
             </div>
-            <button id="decrypt-decrypt" type="button" class="btn btn-primary btn-lg mx-auto d-block my-5">Decrypt</button>
         </div>
+        <button id="encrypt-encrypt" type="button" class="btn btn-primary btn-lg mx-auto d-block my-5">Encrypt</button>
     </div>
     
+    <div class="tab-pane" id="decrypt" role="tabpanel" aria-labelledby="decrypt-tab">
+        <div class="row">
+            <div class="col-6">
+                <textarea id="decrypt-private" rows="25" cols="30" class="form-control mt-4" placeholder="Paste your private key here."></textarea>
+            </div>
+            <div class="col-6">
+                <div id="decrypt-dropzone" class="dropzone" style="margin-top: 25px; height: 100%"></div>
+            </div>
+        </div>
+        <button id="decrypt-decrypt" type="button" class="btn btn-primary btn-lg mx-auto d-block my-5">Decrypt</button>
+    </div>
+
+</div>
 
 @section Scripts
 {

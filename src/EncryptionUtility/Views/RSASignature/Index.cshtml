@@ -1,9 +1,53 @@
 @{
-    ViewData["Title"] = "RSA Signature Operations Page";
+    ViewData["Title"] = "RSA Signature Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <div id="my-dropzone" class="dropzone"></div>
+<h1 class="text-center mt-5 mb-2">RSA File Sign/Verify Page</h1>
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="sign-tab" data-bs-toggle="tab" data-bs-target="#sign" type="button" role="tab" aria-controls="sign" aria-selected="true">Sign file</button>
+    </li>
+    
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="verify-tab" data-bs-toggle="tab" data-bs-target="#verify" type="button" role="tab" aria-controls="verify" aria-selected="false">Verify signed file</button>
+    </li>
+    
+</ul>
+
+<div class="tab-content">
+    
+    <div class="tab-pane active" id="sign" role="tabpanel" aria-labelledby="sign-tab">
+        <div class="row">
+            <div class="col-6">
+                <textarea id="signature-key" rows="25" cols="30" class="form-control mt-4" placeholder="Paste your private key here." style = "height: 200px"></textarea>
+            </div>
+            <div class="col-6">
+                <div id="signature-dropzone" class="dropzone" style="margin-top: 25px; height: 200px"></div>
+            </div>
+            <textarea id="signature-result" rows="25" cols="30" class="form-control mt-4" placeholder="Your signature will be here." style = "height: 200px" readonly></textarea>
+        </div>
+        <button id="sign-sign" type="button" class="btn btn-primary btn-lg mx-auto d-block my-5">Sign</button>
+    </div>
+
+    <div class="tab-pane" id="verify" role="tabpanel" aria-labelledby="verify-tab">
+        <div class="row">
+            <div class="col-6">
+                <textarea id="verification-key" rows="25" cols="30" class="form-control mt-4" placeholder="Paste your public key here." style = "height: 200px"></textarea>
+                <textarea id="verification-signature" rows="25" cols="30" class="form-control mt-4" placeholder="Paste your signature key here." style = "height: 200px"></textarea>
+            </div>
+            <div class="col-6">
+                <div id="verification-dropzone" class="dropzone" style="margin-top: 25px; height: 200px"></div>
+                <textarea id="verification-result" rows="25" cols="30" class="form-control mt-4" style = "height: 200px" readonly></textarea>
+            </div>
+        </div>
+        <button id="verify-verify" type="button" class="btn btn-primary btn-lg mx-auto d-block my-5">Verify</button>
+    </div>
+    
 </div>
+
+@section Scripts
+{
+    <script src="~/js/rsa-sign.js" asp-append-version="true"></script>
+}
