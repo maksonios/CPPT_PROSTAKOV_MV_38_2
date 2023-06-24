@@ -1,5 +1,5 @@
 $('#pair-generate').click(function() {
-    $.post('/rsa-key/generate-pair', {keySize: $('#key_size').val()}, function(data) {
+    $.post('/rsa-keygen/generate-pair', {keySize: $('#key_size').val()}, function(data) {
         $('#pair-private').val(data.privateKey);
         $('#pair-public').val(data.publicKey);
     }).fail(function(response) {
@@ -8,7 +8,7 @@ $('#pair-generate').click(function() {
 });
 
 $('#public-generate').click(function() {
-    $.post('/rsa-key/generate-public', {privateKey: $('#public-private').val()}, function(data) {
+    $.post('/rsa-keygen/generate-public', {privateKey: $('#public-private').val()}, function(data) {
         $('#public-public').val(data);
     });
 });

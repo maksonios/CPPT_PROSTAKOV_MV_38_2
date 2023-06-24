@@ -5,7 +5,7 @@ namespace EncryptionUtility.Controllers;
 
 public record RsaKey(string PrivateKey, string PublicKey);
 
-[Route("rsa-key")]
+[Route("rsa-keygen")]
 public class RSAKeygenController : Controller
 {
     private readonly RSAKeyGenerationService _service;

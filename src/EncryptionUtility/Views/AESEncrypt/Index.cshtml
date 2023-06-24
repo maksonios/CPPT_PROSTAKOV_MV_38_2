@@ -2,8 +2,44 @@
     ViewData["Title"] = "AES Encrypt Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <div id="my-dropzone" class="dropzone"></div>
-</div>
+    <h1 class="text-center mt-5 mb-2">AES File Encryption/Decryption Page</h1>
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="encrypt-tab" data-bs-toggle="tab" data-bs-target="#encrypt" type="button" role="tab" aria-controls="encrypt" aria-selected="true">Encrypt file</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="decrypt-tab" data-bs-toggle="tab" data-bs-target="#decrypt" type="button" role="tab" aria-controls="decrypt" aria-selected="false">Decrypt file</button>
+      </li>
+    </ul>
+    
+    <div class="tab-content">
+        <div class="tab-pane active" id="encrypt" role="tabpanel" aria-labelledby="encrypt-tab">
+            <div class="row">
+                <div class="col-6">
+                    <textarea id="aes-encrypt-key" rows="25" cols="30" class="form-control mt-4" placeholder="Paste your key here." style = "height: 150px"></textarea>
+                </div>
+                <div class="col-6">
+                    <div id="encrypt-aes" class="dropzone" style="margin-top: 25px; height: 150px"></div>
+                </div>
+            </div>
+            <button id="encrypt-encrypt" type="button" class="btn btn-primary btn-lg mx-auto d-block my-5">Encrypt</button>
+        </div>
+        <div class="tab-pane" id="decrypt" role="tabpanel" aria-labelledby="decrypt-tab">
+            <div class="row">
+                <div class="col-6">
+                    <textarea id="aes-decrypt-key" rows="25" cols="30" class="form-control mt-4" placeholder="Paste your key here." style = "height: 150px"></textarea>
+                </div>
+                <div class="col-6">
+                    <div id="decrypt-aes" class="dropzone" style="margin-top: 25px; height: 150px"></div>
+                </div>
+            </div>
+            <button id="decrypt-decrypt" type="button" class="btn btn-primary btn-lg mx-auto d-block my-5">Decrypt</button>
+        </div>
+    </div>
+    
+
+@section Scripts
+{
+    <script src="~/js/aes-encrypt.js" asp-append-version="true"></script>
+}

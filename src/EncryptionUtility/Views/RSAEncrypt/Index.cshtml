@@ -17,7 +17,7 @@
         <div class="tab-pane active" id="encrypt" role="tabpanel" aria-labelledby="encrypt-tab">
             <div class="row">
                 <div class="col-6">
-                    <textarea id="encrypt-public" rows="28" cols="30" class="form-control mt-4" placeholder="Paste your public key here."></textarea>
+                    <textarea id="encrypt-public" rows="25" cols="30" class="form-control mt-4" placeholder="Paste your public key here."></textarea>
                 </div>
                 <div class="col-6">
                     <div id="encrypt-dropzone" class="dropzone" style="margin-top: 25px; height: 100%"></div>
@@ -28,7 +28,7 @@
         <div class="tab-pane" id="decrypt" role="tabpanel" aria-labelledby="decrypt-tab">
             <div class="row">
                 <div class="col-6">
-                    <textarea id="decrypt-private" rows="28" cols="30" class="form-control mt-4" placeholder="Paste your private key here."></textarea>
+                    <textarea id="decrypt-private" rows="25" cols="30" class="form-control mt-4" placeholder="Paste your private key here."></textarea>
                 </div>
                 <div class="col-6">
                     <div id="decrypt-dropzone" class="dropzone" style="margin-top: 25px; height: 100%"></div>
@@ -41,5 +41,5 @@
 
 @section Scripts
 {
-    <script src="~/js/rsaencrypt.js" asp-append-version="true"></script>
+    <script src="~/js/rsa-encrypt.js" asp-append-version="true"></script>
 }

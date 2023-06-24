@@ -7,6 +7,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<HashsumCalculationService>();
 builder.Services.AddTransient<RSAKeyGenerationService>();
 builder.Services.AddTransient<RSAEncryptService>();
+builder.Services.AddTransient<AESEncryptService>();
 
 var app = builder.Build();
 
