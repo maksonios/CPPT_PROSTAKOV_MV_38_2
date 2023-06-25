@@ -3,7 +3,6 @@ var signatureDropzone = new Dropzone("#signature-dropzone", {
     maxFiles: 1,
     maxFilesize: 3,
     autoProcessQueue: false,
-    uploadMultiple: false,
     maxfilesexceeded: function (files) {
         this.removeAllFiles();
         this.addFile(files);

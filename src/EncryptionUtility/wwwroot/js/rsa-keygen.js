@@ -12,4 +12,3 @@ $('#public-generate').click(function() {
         $('#public-public').val(data);
     });
 });
-

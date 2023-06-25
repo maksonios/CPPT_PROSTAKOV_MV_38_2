@@ -10,7 +10,6 @@ builder.Services.AddTransient<RSAEncryptService>();
 builder.Services.AddTransient<AESEncryptService>();
 builder.Services.AddTransient<RSASignatureService>();
 builder.Services.AddTransient<ArchiveHelperService>();
-builder.Services.AddTransient<ArchiveHelperServiceReserve>();
 
 var app = builder.Build();
 

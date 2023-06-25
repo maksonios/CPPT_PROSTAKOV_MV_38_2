@@ -17,14 +17,14 @@ public class RSAEncryptService
     
     public FileNameInfo CreateEncryptedFile(string fileId, string fileName, MemoryStream fileStream, string publicKey)
     {
-        var fileInfo = new FileInfo(fileName, CreateEncryptedMemoryStream(fileStream, publicKey)); 
+        var fileInfo = new FileInfo(fileName, CreateEncryptedMemoryBytes(fileStream, publicKey)); 
         _memoryCache.Set(fileId, fileInfo, TimeSpan.FromMinutes(5));
         return new FileNameInfo(fileId, fileName);
     }
     
     public FileNameInfo CreateDecryptedFile(string fileId, string fileName, MemoryStream fileStream, string privateKey)
     {
-        var fileInfo = new FileInfo(fileName, CreateDecryptedMemoryStream(fileStream, privateKey));
+        var fileInfo = new FileInfo(fileName, CreateDecryptedMemoryBytes(fileStream, privateKey));
         _memoryCache.Set(fileId, fileInfo, TimeSpan.FromMinutes(5));
         return new FileNameInfo(fileId, fileName);
     }
@@ -34,14 +34,14 @@ public class RSAEncryptService
         return _memoryCache.TryGetValue(fileId, out FileInfo? file) ? file : null;
     }
 
-    private byte[] CreateEncryptedMemoryStream(MemoryStream fileStream, string publicKey)
+    private byte[] CreateEncryptedMemoryBytes(MemoryStream fileStream, string publicKey)
     {
         using var rsa = RSA.Create();
         rsa.ImportFromPem(publicKey);
         return rsa.Encrypt(fileStream.ToArray(), RSAEncryptionPadding.Pkcs1);
     }
     
-    private byte[] CreateDecryptedMemoryStream(MemoryStream fileStream, string privateKey)
+    private byte[] CreateDecryptedMemoryBytes(MemoryStream fileStream, string privateKey)
     {
         using var rsa = RSA.Create();
         rsa.ImportFromPem(privateKey);

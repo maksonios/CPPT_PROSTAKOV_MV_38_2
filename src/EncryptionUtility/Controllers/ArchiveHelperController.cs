@@ -21,10 +21,10 @@ public class ArchiveHelperController : Controller
     }
     
     [HttpPost("upload")]
-    public async Task<FileNameInfo> Upload()
+    public async Task<FileNameInfo> Upload(string password)
     {
         var files = await GetFiles(Request.Form.Files);
-        return _service.CreateArchive(files);
+        return _service.CreateArchive(files, password);
     }
     
     [Route("download/{fileId}")]

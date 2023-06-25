@@ -14,12 +14,12 @@ public class ArchiveHelperService
         _memoryCache = memoryCache;
     }
 
-    public FileNameInfo CreateArchive(FileInfo[] files)
+    public FileNameInfo CreateArchive(FileInfo[] files, string password)
     {
         var stream = new MemoryStream();
         using (var zip = new ZipFile())
         {
-            zip.Password = "yourPassword";  // Set your password here
+            zip.Password = password;
             zip.Encryption = EncryptionAlgorithm.WinZipAes256;
 
             foreach (var file in files) 

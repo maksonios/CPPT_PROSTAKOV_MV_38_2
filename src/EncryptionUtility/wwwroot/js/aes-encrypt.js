@@ -3,7 +3,6 @@ var encryptAES = new Dropzone("#encrypt-aes", {
     maxFiles: 1,
     maxFilesize: 3,
     autoProcessQueue: false,
-    uploadMultiple: false,
     maxfilesexceeded: function (files) {
         this.removeAllFiles();
         this.addFile(files);
@@ -40,7 +39,6 @@ var decryptAES = new Dropzone("#decrypt-aes", {
     maxFiles: 1,
     maxFilesize: 3,
     autoProcessQueue: false,
-    uploadMultiple: false,
     maxfilesexceeded: function (files) {
         this.removeAllFiles();
         this.addFile(files);

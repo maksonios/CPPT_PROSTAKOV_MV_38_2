@@ -5,28 +5,32 @@ var archiveDropzone = new Dropzone("#archive-dropzone", {
     autoProcessQueue: false,
     uploadMultiple: true,
     paramName: 'files',
+    parallelUploads: 10,
     maxfilesexceeded: function (files) {
         this.removeAllFiles();
         this.addFile(files);
     },
-    parallelUploads: 10
+    sending: (file, xhr, formData) => {
+        formData.append("password", $("#archive-password").val());
+    }
 });
 
 $("#submit").click(function (e) {
     e.preventDefault();
 
     archiveDropzone.processQueue();
-
+    var downloadTrigger = false;
     archiveDropzone.on("complete", function (response) {
-        if (response.xhr.status === 200) {
+        if (!downloadTrigger && response.xhr.status === 200) {
             console.log(response);
-            //var downloadLink = document.createElement("a");
-            // var archiveInfo = JSON.parse(response.xhr.response);
-            // var archiveId = archiveInfo.id;
-            // var archiveName = "encrypted_archive.zip";
-            //downloadLink.href = '/archive-helper/download';
-            //downloadLink.setAttribute("download", archiveName);
-            //downloadLink.click();
+            var downloadLink = document.createElement("a");
+            var fileNameInfo = JSON.parse(response.xhr.response);
+            var fileId = fileNameInfo.id;
+            var fileName = fileNameInfo.name;
+            downloadLink.href = '/archive-helper/download/'+ fileId;
+            downloadLink.setAttribute("download", fileName);
+            downloadLink.click();
+            downloadTrigger = true;
         } else {
             console.log("Upload failed.");
         }
