@@ -1,15 +1,16 @@
 using EncryptionUtility.Extensions;
 using EncryptionUtility.Services;
 using Microsoft.AspNetCore.Mvc;
+using FileInfo = EncryptionUtility.Services.FileInfo;
 
 namespace EncryptionUtility.Controllers;
 
 [Route("archive-helper")]
 public class ArchiveHelperController : Controller
 {
-    private readonly ArchiveHelperServiceReserve _service;
+    private readonly ArchiveHelperService _service;
 
-    public ArchiveHelperController(ArchiveHelperServiceReserve service)
+    public ArchiveHelperController(ArchiveHelperService service)
     {
         _service = service;
     }
@@ -22,11 +23,8 @@ public class ArchiveHelperController : Controller
     [HttpPost("upload")]
     public async Task<FileNameInfo> Upload()
     {
-        var files = Request.Form.Files;
-        
-        var fileName = files[0].Name;
-        var fileStream = await files[0].GetMemoryStream();
-        return _service.AddFileToZip(fileName, (MemoryStream)fileStream);
+        var files = await GetFiles(Request.Form.Files);
+        return _service.CreateArchive(files);
     }
     
     [Route("download/{fileId}")]
@@ -37,5 +35,16 @@ public class ArchiveHelperController : Controller
             return NotFound();
 
         return File(file.File, "application/zip", "archive.zip");
+    }
+
+    private async Task<FileInfo[]> GetFiles(IFormFileCollection files)
+    {
+        var result = new FileInfo[files.Count];
+        for (var i = 0; i < files.Count; i++)
+        {
+            var stream = await files[i].GetMemoryStream();
+            result[i] = new FileInfo(files[i].FileName, ((MemoryStream)stream).ToArray());
+        }
+        return result;
     }
 }
