@@ -19,7 +19,7 @@ public class AESEncryptController : Controller
         return View();
     }
 
-    [HttpPost("upload-encrypt")]
+    [HttpPost("encrypt")]
     public async Task<FileNameInfoAES> UploadEncrypt([FromForm] IFormFile file, [FromForm] string key)
     {   
         var fileId = Guid.NewGuid().ToString();
@@ -28,7 +28,7 @@ public class AESEncryptController : Controller
         return _service.CreateEncryptedFile(fileId, fileName, (MemoryStream) fileStream, key);
     }
     
-    [HttpPost("upload-decrypt")]
+    [HttpPost("decrypt")]
     public async Task<FileNameInfoAES> UploadDecrypt([FromForm] IFormFile file, [FromForm] string key)
     {   
         var fileId = Guid.NewGuid().ToString();

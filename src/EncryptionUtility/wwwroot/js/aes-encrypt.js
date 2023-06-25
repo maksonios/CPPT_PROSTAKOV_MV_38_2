@@ -1,9 +1,9 @@
 var encryptAES = new Dropzone("#encrypt-aes", {
-    url: '/aes-encrypt/upload-encrypt',
+    url: '/aes-encrypt/encrypt',
     maxFiles: 1,
     maxFilesize: 3,
     autoProcessQueue: false,
-    multiple: false,
+    uploadMultiple: false,
     maxfilesexceeded: function (files) {
         this.removeAllFiles();
         this.addFile(files);
@@ -36,11 +36,11 @@ $("#encrypt-encrypt").click(function (e) {
 
 
 var decryptAES = new Dropzone("#decrypt-aes", {
-    url: '/aes-encrypt/upload-decrypt',
+    url: '/aes-encrypt/decrypt',
     maxFiles: 1,
     maxFilesize: 3,
     autoProcessQueue: false,
-    multiple: false,
+    uploadMultiple: false,
     maxfilesexceeded: function (files) {
         this.removeAllFiles();
         this.addFile(files);

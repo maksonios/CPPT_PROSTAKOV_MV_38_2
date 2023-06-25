@@ -1,9 +1,9 @@
 var encryptDropzone = new Dropzone("#encrypt-dropzone", {
-    url: '/rsa-encrypt/upload-encrypt',
+    url: '/rsa-encrypt/encrypt',
     maxFiles: 1,
     maxFilesize: 3,
     autoProcessQueue: false,
-    multiple: false,
+    uploadMultiple: false,
     maxfilesexceeded: function (files) {
         this.removeAllFiles();
         this.addFile(files);
@@ -36,11 +36,11 @@ $("#encrypt-encrypt").click(function (e) {
 
 
 var decryptDropzone = new Dropzone("#decrypt-dropzone", {
-    url: '/rsa-encrypt/upload-decrypt',
+    url: '/rsa-encrypt/decrypt',
     maxFiles: 1,
     maxFilesize: 3,
     autoProcessQueue: false,
-    multiple: false,
+    uploadMultiple: false,
     maxfilesexceeded: function (files) {
         this.removeAllFiles();
         this.addFile(files);

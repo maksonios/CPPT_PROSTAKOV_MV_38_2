@@ -19,7 +19,7 @@ public class RSAEncryptController : Controller
         return View();
     }
     
-    [HttpPost("upload-encrypt")]
+    [HttpPost("encrypt")]
     public async Task<FileNameInfo> UploadEncrypt([FromForm] IFormFile file, [FromForm] string publicKey)
     {   
         var fileId = Guid.NewGuid().ToString();
@@ -28,7 +28,7 @@ public class RSAEncryptController : Controller
         return _service.CreateEncryptedFile(fileId, fileName, (MemoryStream) fileStream, publicKey);
     }
     
-    [HttpPost("upload-decrypt")]
+    [HttpPost("decrypt")]
     public async Task<FileNameInfo> UploadDecrypt([FromForm] IFormFile file, [FromForm] string privateKey)
     {   
         var fileId = Guid.NewGuid().ToString();

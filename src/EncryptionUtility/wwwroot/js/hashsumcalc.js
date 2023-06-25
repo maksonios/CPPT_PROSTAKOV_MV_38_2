@@ -3,7 +3,7 @@ var dropzone = new Dropzone("#my-dropzone", {
     maxFiles: 1,
     maxFilesize: 3,
     autoProcessQueue: false,
-    multiple: false,
+    uploadMultiple: false,
     maxfilesexceeded: function (files) {
         this.removeAllFiles();
         this.addFile(files);

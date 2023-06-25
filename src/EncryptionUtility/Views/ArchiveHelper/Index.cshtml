@@ -2,8 +2,16 @@
     ViewData["Title"] = "Archive Helper Page";
 }
 
+<h1 class="mt-5 mb-2" style="text-align: center">Archive Helper Page</h1>
+
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <div id="my-dropzone" class="dropzone"></div>
+    <div id="archive-dropzone" class="dropzone" style="margin-top: 50px"></div>
+    <button id="submit" type="button" class="btn btn-primary btn-lg mx-auto d-block my-3" style="margin-top: 2rem!important;">Submit</button>
 </div>
+
+<input type="file" id="files" name="file" />
+
+@section Scripts
+{
+    <script src="~/js/archive-helper.js" asp-append-version="true"></script>
+}
