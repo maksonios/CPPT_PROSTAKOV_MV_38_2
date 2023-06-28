@@ -1,7 +1,7 @@
 using EncryptionUtility.Extensions;
 using EncryptionUtility.Services;
 using Microsoft.AspNetCore.Mvc;
-using FileInfo = EncryptionUtility.Services.FileInfo;
+using EncryptionUtility.Models;
 
 namespace EncryptionUtility.Controllers;
 
@@ -37,13 +37,13 @@ public class ArchiveHelperController : Controller
         return File(file.File, "application/zip", "archive.zip");
     }
 
-    private async Task<FileInfo[]> GetFiles(IFormFileCollection files)
+    private async Task<FileNameContent[]> GetFiles(IFormFileCollection files)
     {
-        var result = new FileInfo[files.Count];
+        var result = new FileNameContent[files.Count];
         for (var i = 0; i < files.Count; i++)
         {
             var stream = await files[i].GetMemoryStream();
-            result[i] = new FileInfo(files[i].FileName, ((MemoryStream)stream).ToArray());
+            result[i] = new FileNameContent(files[i].FileName, ((MemoryStream)stream).ToArray());
         }
         return result;
     }

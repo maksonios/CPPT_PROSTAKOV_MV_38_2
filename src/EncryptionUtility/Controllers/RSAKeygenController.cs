@@ -1,9 +1,9 @@
+using EncryptionUtility.Models;
 using EncryptionUtility.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EncryptionUtility.Controllers;
 
-public record RsaKey(string PrivateKey, string PublicKey);
 
 [Route("rsa-keygen")]
 public class RSAKeygenController : Controller

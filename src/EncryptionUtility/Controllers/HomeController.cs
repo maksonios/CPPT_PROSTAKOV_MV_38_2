@@ -23,12 +23,6 @@ public class HomeController : Controller
         return View();
     }
     
-    [HttpPost]
-    public void Upload([FromForm] IFormFile file)
-    {
-        Console.WriteLine(file.Length);
-    }
-
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

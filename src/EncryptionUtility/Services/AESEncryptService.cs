@@ -1,11 +1,9 @@
 using System.Security.Cryptography;
 using System.Text;
+using EncryptionUtility.Models;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace EncryptionUtility.Services;
-
-public record FileNameInfoAES(string Id, string Name);
-public record FileInfoAES(string Name, byte[] File);
 
 public class AESEncryptService
 {
@@ -16,26 +14,26 @@ public class AESEncryptService
         _memoryCache = memoryCache;
     }
     
-    public FileNameInfoAES CreateEncryptedFile(string fileId, string fileName, MemoryStream fileStream, string key)
+    public FileNameInfo CreateEncryptedFile(string fileId, string fileName, MemoryStream fileStream, string key)
     {
-        var fileInfo = new FileInfoAES(fileName, CreateEncryptedMemoryStream(fileStream, key)); 
+        var fileInfo = new FileNameContent(fileName, CreateEncryptedBytes(fileStream, key)); 
         _memoryCache.Set(fileId, fileInfo, TimeSpan.FromMinutes(5));
-        return new FileNameInfoAES(fileId, fileName);
+        return new FileNameInfo(fileId, fileName);
     }
     
-    public FileNameInfoAES CreateDecryptedFile(string fileId, string fileName, MemoryStream fileStream, string key)
+    public FileNameInfo CreateDecryptedFile(string fileId, string fileName, MemoryStream fileStream, string key)
     {
-        var fileInfo = new FileInfoAES(fileName, CreateDecryptedMemoryStream(fileStream, key));
+        var fileInfo = new FileNameContent(fileName, CreateDecryptedBytes(fileStream, key));
         _memoryCache.Set(fileId, fileInfo, TimeSpan.FromMinutes(5));
-        return new FileNameInfoAES(fileId, fileName);
+        return new FileNameInfo(fileId, fileName);
     }
     
-    public FileInfoAES? TryGetFile(string fileId)
+    public FileNameContent? TryGetFile(string fileId)
     {
-        return _memoryCache.TryGetValue(fileId, out FileInfoAES? file) ? file : null;
+        return _memoryCache.TryGetValue(fileId, out FileNameContent? file) ? file : null;
     }
     
-    private byte[] CreateEncryptedMemoryStream(MemoryStream fileStream, string key)
+    private byte[] CreateEncryptedBytes(MemoryStream fileStream, string key)
     {
         byte[] keyBytes = Encoding.UTF8.GetBytes(key);
         byte[] bytes = fileStream.ToArray();
@@ -57,7 +55,7 @@ public class AESEncryptService
         return aes.IV.Concat(encrypted).ToArray();
     }
 
-    private byte[] CreateDecryptedMemoryStream(MemoryStream fileStream, string key)
+    private byte[] CreateDecryptedBytes(MemoryStream fileStream, string key)
     {
         byte[] keyBytes = Encoding.UTF8.GetBytes(key);
         byte[] encrypted = fileStream.ToArray();

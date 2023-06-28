@@ -1,4 +1,5 @@
 using EncryptionUtility.Extensions;
+using EncryptionUtility.Models;
 using EncryptionUtility.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,7 +21,7 @@ public class AESEncryptController : Controller
     }
 
     [HttpPost("encrypt")]
-    public async Task<FileNameInfoAES> UploadEncrypt([FromForm] IFormFile file, [FromForm] string key)
+    public async Task<FileNameInfo> UploadEncrypt([FromForm] IFormFile file, [FromForm] string key)
     {   
         var fileId = Guid.NewGuid().ToString();
         var fileName = "encrypted_" + file.FileName;
@@ -29,7 +30,7 @@ public class AESEncryptController : Controller
     }
     
     [HttpPost("decrypt")]
-    public async Task<FileNameInfoAES> UploadDecrypt([FromForm] IFormFile file, [FromForm] string key)
+    public async Task<FileNameInfo> UploadDecrypt([FromForm] IFormFile file, [FromForm] string key)
     {   
         var fileId = Guid.NewGuid().ToString();
         var fileName = "decrypted_" + file.FileName;

@@ -1,3 +1,4 @@
+using EncryptionUtility.Models;
 using Ionic.Zip;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -14,7 +15,7 @@ public class ArchiveHelperService
         _memoryCache = memoryCache;
     }
 
-    public FileNameInfo CreateArchive(FileInfo[] files, string password)
+    public FileNameInfo CreateArchive(FileNameContent[] files, string password)
     {
         var stream = new MemoryStream();
         using (var zip = new ZipFile())
@@ -29,13 +30,13 @@ public class ArchiveHelperService
         }
         
         var fileId = Guid.NewGuid().ToString();
-        var fileInfo = new FileInfo(ArchiveName, stream.ToArray());
+        var fileInfo = new FileNameContent(ArchiveName, stream.ToArray());
         _memoryCache.Set(fileId, fileInfo, TimeSpan.FromMinutes(5));
         return new FileNameInfo(fileId, ArchiveName);
     }
 
-    public FileInfo? TryGetFile(string fileId)
+    public FileNameContent? TryGetFile(string fileId)
     {
-        return _memoryCache.TryGetValue(fileId, out FileInfo? file) ? file : null;
+        return _memoryCache.TryGetValue(fileId, out FileNameContent? file) ? file : null;
     }
 }

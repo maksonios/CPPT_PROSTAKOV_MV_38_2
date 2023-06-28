@@ -1,4 +1,5 @@
 using EncryptionUtility.Extensions;
+using EncryptionUtility.Models;
 using EncryptionUtility.Services;
 using Microsoft.AspNetCore.Mvc;
 
