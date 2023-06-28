@@ -19,9 +19,13 @@ $("#submit").click(function (e) {
     e.preventDefault();
 
     archiveDropzone.processQueue();
-    var downloadTrigger = false;
-    archiveDropzone.on("complete", function (response) {
-        if (!downloadTrigger && response.xhr.status === 200) {
+    var response = {};
+    archiveDropzone.on("complete", function (xhrResponse) {
+        response = xhrResponse;
+    });
+    
+    archiveDropzone.on('queuecomplete', function() {
+        if (response.xhr.status === 200) {
             console.log(response);
             var downloadLink = document.createElement("a");
             var fileNameInfo = JSON.parse(response.xhr.response);
@@ -30,7 +34,6 @@ $("#submit").click(function (e) {
             downloadLink.href = '/archive-helper/download/'+ fileId;
             downloadLink.setAttribute("download", fileName);
             downloadLink.click();
-            downloadTrigger = true;
         } else {
             console.log("Upload failed.");
         }
